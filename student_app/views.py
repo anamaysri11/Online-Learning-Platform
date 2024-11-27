@@ -20,7 +20,7 @@ CACHE_TTL = 60 * 15  # 15 minutes.
 
 
 class PersonViewSet(viewsets.ModelViewSet):
-   # Rest of the code...
+
    serializer_class = PersonSerializer
    pagination_class = StandardResultsSetPagination
 
@@ -54,12 +54,11 @@ class PersonViewSet(viewsets.ModelViewSet):
        )
        if not created:
            return Response({'error': 'Person with this email already exists'}, status=status.HTTP_400_BAD_REQUEST)
-       person.full_clean()  # Ensuring the data is valid
+       person.full_clean()  
        person.save()
 
 
        def post_commit():
-           # Post-commit actions
            pass
 
 
@@ -73,8 +72,8 @@ class PersonViewSet(viewsets.ModelViewSet):
    @handle_exceptions
    def retrieve(self, request, *args, **kwargs):
        instance = self.get_object()
-       instance.full_clean()  # Ensuring the data is valid before saving
-       instance.save()  # Using save() to persist changes
+       instance.full_clean()  
+       instance.save()  
        return super().retrieve(request, *args, **kwargs)
 
 
@@ -106,12 +105,11 @@ class ProfileViewSet(viewsets.ModelViewSet):
        )
        if not created:
            return Response({'error': 'Profile for this person already exists'}, status=status.HTTP_400_BAD_REQUEST)
-       profile.full_clean()  # Ensuring the data is valid
+       profile.full_clean()  
        profile.save()
 
 
        def post_commit():
-           # Post-commit actions
            pass
 
 
@@ -150,12 +148,11 @@ class InstructorViewSet(viewsets.ModelViewSet):
        )
        if not created:
            return Response({'error': 'Instructor for this person already exists'}, status=status.HTTP_400_BAD_REQUEST)
-       instructor.full_clean()  # Ensuring the data is valid
+       instructor.full_clean()  
        instructor.save()
 
 
        def post_commit():
-           # Post-commit actions
            pass
 
 
@@ -169,8 +166,8 @@ class InstructorViewSet(viewsets.ModelViewSet):
    @handle_exceptions
    def retrieve(self, request, *args, **kwargs):
        instance = self.get_object()
-       instance.full_clean()  # Ensuring the data is valid before saving
-       instance.save()  # Using save() to persist changes
+       instance.full_clean()  
+       instance.save()  
        return super().retrieve(request, *args, **kwargs)
 
 
@@ -209,12 +206,11 @@ class StudentViewSet(viewsets.ModelViewSet):
        )
        if not created:
            return Response({'error': 'Student for this person already exists'}, status=status.HTTP_400_BAD_REQUEST)
-       student.full_clean()  # Ensuring the data is valid
+       student.full_clean() 
        student.save()
 
 
        def post_commit():
-           # Post-commit actions
            pass
 
 
@@ -228,8 +224,8 @@ class StudentViewSet(viewsets.ModelViewSet):
    @handle_exceptions
    def retrieve(self, request, *args, **kwargs):
        instance = self.get_object()
-       instance.full_clean()  # Ensuring the data is valid before saving
-       instance.save()  # Using save() to persist changes
+       instance.full_clean()  
+       instance.save()  
        return super().retrieve(request, *args, **kwargs)
 
 
@@ -304,12 +300,11 @@ class CourseViewSet(viewsets.ModelViewSet):
        )
        if not created:
            return Response({'error': 'Course with this name already exists'}, status=status.HTTP_400_BAD_REQUEST)
-       course.full_clean()  # Ensuring the data is valid
+       course.full_clean()  
        course.save()
 
 
        def post_commit():
-           # Post-commit actions
            pass
 
 
@@ -323,9 +318,9 @@ class CourseViewSet(viewsets.ModelViewSet):
    @handle_exceptions
    def retrieve(self, request, *args, **kwargs):
        instance = self.get_object()
-       enrollments_count = instance.enrollments.count()  # Using count() to get number of enrollments
-       latest_enrollment = instance.enrollments.latest('enrollment_date')  # Using latest() to get the latest enrollment
-       instance.full_clean()  # Ensuring the data is valid before saving
+       enrollments_count = instance.enrollments.count() 
+       latest_enrollment = instance.enrollments.latest('enrollment_date') 
+       instance.full_clean()  
        instance.save()
        return super().retrieve(request, *args, **kwargs)
 
@@ -389,12 +384,11 @@ class ModuleViewSet(viewsets.ModelViewSet):
        )
        if not created:
            return Response({'error': 'Module with this name already exists'}, status=status.HTTP_400_BAD_REQUEST)
-       module.full_clean()  # Ensuring the data is valid
+       module.full_clean()  
        module.save()
 
 
        def post_commit():
-           # Post-commit actions
            pass
 
 
@@ -433,12 +427,11 @@ class EnrollmentViewSet(viewsets.ModelViewSet):
        )
        if not created:
            return Response({'error': 'This enrollment already exists'}, status=status.HTTP_400_BAD_REQUEST)
-       enrollment.full_clean()  # Ensuring the data is valid
+       enrollment.full_clean()  
        enrollment.save()
 
 
        def post_commit():
-           # Post-commit actions
            pass
 
 
@@ -452,8 +445,8 @@ class EnrollmentViewSet(viewsets.ModelViewSet):
    @handle_exceptions
    def retrieve(self, request, *args, **kwargs):
        instance = self.get_object()
-       instance.full_clean()  # Ensuring the data is valid before saving
-       instance.save()  # Using save() to persist changes
+       instance.full_clean()  
+       instance.save() 
        return super().retrieve(request, *args, **kwargs)
 
 
@@ -493,12 +486,11 @@ class ReviewViewSet(viewsets.ModelViewSet):
        )
        if not created:
            return Response({'error': 'This review already exists'}, status=status.HTTP_400_BAD_REQUEST)
-       review.full_clean()  # Ensuring the data is valid
+       review.full_clean()  
        review.save()
 
 
        def post_commit():
-           # Post-commit actions
            pass
 
 
@@ -512,8 +504,8 @@ class ReviewViewSet(viewsets.ModelViewSet):
    @handle_exceptions
    def retrieve(self, request, *args, **kwargs):
        instance = self.get_object()
-       instance.full_clean()  # Ensuring the data is valid before saving
-       instance.save()  # Using save() to persist changes
+       instance.full_clean() 
+       instance.save()  
        return super().retrieve(request, *args, **kwargs)
 
 
